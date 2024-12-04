@@ -1,0 +1,12 @@
+﻿@model AppUser
+
+@await Html.PartialAsync("_AccountSettings", Model)
+
+
+@if (Session.GetString("Username") != null)
+{
+
+    <hr />
+    @await Html.PartialAsync("_AccountSocial", Model)
+
+}

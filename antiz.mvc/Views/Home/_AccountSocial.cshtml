@@ -1,0 +1,188 @@
+﻿@model AppUser
+
+
+<form method="post" enctype="multipart/form-data" action="@Url.Action("AccountSocial")">
+
+    <input type="hidden" name="id" value="@ViewBag.id" />
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input class="form-control" maxlength="66" name="@nameof(Model.Name)" value="@Model.Name" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Bio</label>
+        <div class="col-sm-10">
+            <input class="form-control" maxlength="444" name="@nameof(Model.Bio)" value="@Model.Bio" />
+        </div>
+    </div>
+
+    @if (ViewBag.id == "NewAvatar")
+    {
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Avatar</label>
+            <div class="col-sm-10">
+                <input type="file" name="AvatarImg" class="form-control">
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <a class="btn btn-outline-primary" href="@Url.Action("Account", new { id = "NewAvatar"})">upload new avatar</a>
+            </div>
+            <div class="col-sm-9">
+                <img src="@Url.Action("Photo", "BackEnd",  new {id = Model.AvatarId})" class="img-responsive" />
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.id == "NewCover")
+    {
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Cover</label>
+            <div class="col-sm-10">
+                <input type="file" name="CoverImg" class="form-control">
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row mb-3">
+            <label class="col-sm-3">
+                <a class="btn btn-outline-primary" href="@Url.Action("Account", new { id = "NewCover"})">upload new cover</a>
+            </label>
+            <div class="col-sm-9">
+                <img src="@Url.Action("Photo", "BackEnd", new {id = Model.CoverId})" class="img-responsive" />
+            </div>
+        </div>
+    }
+
+
+    <hr />
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Mobile</label>
+        <div class="col-sm-10">
+            <input type="number" step="1" class="form-control" name="@nameof(Model.Mobile)" value="@Model.Mobile" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Landline</label>
+        <div class="col-sm-10">
+            <input type="number" step="1" class="form-control" name="@nameof(Model.Landline)" value="@Model.Landline" />
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Website</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">http://</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Website)" name="@nameof(Model.Website)" value="@Model.Website" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">TikTok User</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.TikTok)" name="@nameof(Model.TikTok)" value="@Model.TikTok" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Instagram User</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Instagram)" name="@nameof(Model.Instagram)" value="@Model.Instagram" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Facebook user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Facebook)" name="@nameof(Model.Facebook)" value="@Model.Facebook" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">X/Twitter user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Twitter)" name="@nameof(Model.Twitter)" value="@Model.Twitter" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">YouTube user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.YouTube)" name="@nameof(Model.YouTube)" value="@Model.YouTube" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Telegram user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Telegram)" name="@nameof(Model.Telegram)" value="@Model.Telegram" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Skype user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Skype)" name="@nameof(Model.Skype)" value="@Model.Skype" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Whatsapp user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.Whatsapp)" name="@nameof(Model.Whatsapp)" value="@Model.Whatsapp" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">LinkedIn user</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-text">@@</div>
+                <input type="text" class="form-control" placeholder="@nameof(Model.LinkedIn)" name="@nameof(Model.LinkedIn)" value="@Model.LinkedIn" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+</form>

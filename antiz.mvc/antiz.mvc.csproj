@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.71" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.17" />
+
+
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\_KInfra.bbg\BitMinistry.Data.Wrapper\_Core.BitMinistry.Data.Wrapper.csproj" />
+    <ProjectReference Include="..\..\_KInfra.bbg\BitMinistry.Mail\_Core.BitMinistry.Mail.csproj" />
+    <ProjectReference Include="..\..\_KInfra.ghub\BitMinistry.Data\_Core.BitMinistry.Data.csproj" />
+    <ProjectReference Include="..\..\_KInfra.ghub\BitMinistry.Settings\_Core.BitMinistry.Settings.csproj" />
+    <ProjectReference Include="..\..\_KInfra.ghub\BitMinistry\_Core.BitMinistry.csproj" />
+  </ItemGroup>
+
+</Project>

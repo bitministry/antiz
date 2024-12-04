@@ -1,0 +1,48 @@
+﻿@model StatementListVm
+
+@if ( Model.LoadMoreFrom == null )
+{    
+    @await Html.PartialAsync("_AddPostForm", Model.AddPostVm )
+
+    <div id="timelineContainer"></div>
+
+
+    <script>
+
+        $(document).ready(() => {
+            timeline.init();
+        });
+
+    </script>
+
+}
+else 
+    foreach (var stm in Model.Content)
+    {
+        var link = $"@{stm.Username}";
+
+        <div class="row border-secondary border-bottom p-1 p-sm-2 p-lg-3 statement-in-list" data-statementid="@stm.StatementId">
+            <div class="col-auto d-none d-md-block">
+                <a href="@link" onclick="event.stopPropagation();">
+                    <img class="avatar-thumb" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
+                </a>
+            </div>
+            <div class="col">
+                <div class="mb-1">
+                    <a href="@link" onclick="event.stopPropagation();" >
+                        <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
+                        <b class="text-white">@stm.Name</b> @@@stm.Username                 
+                    </a>
+                    <span class="text-secondary" data-fromnow="@stm.Created"></span>
+                </div>
+                <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer"  onclick="navigateToPost( this )">
+                    @Html.Raw(stm.RenderedMessage)
+                </div>
+
+            </div>
+            @await Html.PartialAsync("_StatementStats", stm)
+        </div>
+
+
+    }
+

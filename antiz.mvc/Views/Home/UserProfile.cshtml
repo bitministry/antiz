@@ -1,0 +1,193 @@
+﻿@model ProfileVm
+@using System.Linq.Expressions
+@{
+
+    var u = Model.AppUser;
+}
+
+<div class="container">
+    <!-- Cover Image -->
+    <div class="position-relative">
+        <img src="@Url.Action("Photo", "BackEnd",  new {id = u.CoverId})" class="w-100 rounded profile-coverphoto" alt="Cover Image">
+
+        <!-- Avatar -->
+        <img src="@Url.Action("Photo", "BackEnd", new {id = u.AvatarId})" class="rounded-circle position-absolute profile-avatar"
+             alt="Avatar">
+    </div>
+
+    <div class="row">
+
+        <div class="col-6 col-sm-5 col-lg-4 col-xl-4 pt-5">
+            <h2>
+                @u.Name
+            </h2>
+            <h5>@u.Username</h5>
+
+            <div class="d-flex mb-4">
+                <a href="@Url.Action("Followers", new { id = Model.AppUser.Username, @case = ProfileVm.Case.Following })" class="me-4">
+                    <strong>@u.IamFollowingCount</strong> 
+                    Following
+                </a>
+
+                <a href="@Url.Action("Followers", new { id = Model.AppUser.Username, @case = ProfileVm.Case.Followers })" class="me-4">
+                    <strong>@u.PeopleFollowMeCount </strong> 
+                    Followers
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-sm-7 col-lg-8 col-xl-8 pt-4">
+
+            <div class="d-flex mb-3">
+                <p class="col pe-2">
+                    @u.Bio
+                    <br />
+                    <span class="text-secondary">
+                        <i class="bi bi-calendar"></i> Joined @(u.Joined?.ToString("d"))
+                    </span>
+                </p>
+                <div class="col-auto ">
+
+                    @if (!Model.AppUser.IFollow(Session))
+                    {
+                        <button onclick="userProfile.newFollow( @Model.AppUser.UserId )" type="button" class="btn btn-sm btn-outline-primary">
+                            Follow
+                        </button>
+                    }
+                    else{
+                        if (Model.AppUser.UserId != Session.GetInt32("LoginId"))
+                        {
+                            <a href="@Url.Action( "UnFollow", "BackEnd" , new { id= Model.AppUser.UserId})" type="button" class="btn btn-sm btn-outline-secondary">
+                                Unfollow
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+
+
+            <div class="row">
+
+
+                @{
+
+                    void SocialPlugin(string type, string value)
+                    {
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            var url = $"https://{type}.com";
+                            var icon = type.ToLower();
+                            switch (type)
+                            {
+                                case "Instagram":
+                                case "Twitter":
+                                case "Facebook":
+                                    url = $"{url}/{value}";
+
+                                    break;
+                                case "YouTube":
+                                case "TikTok":
+                                    url = $"{url}/@{value}";
+
+                                    break;
+
+                                case "LinkedIn":
+                                    url = $"{url}/in/{value}";
+                                    break;
+
+                                case "Rumble":
+                                    url = $"{url}/c/{value}";
+                                    icon = "film";
+
+                                    break;
+
+                                case "WebSite":
+                                    url = $"http://{value}";
+                                    icon = "link";
+                                    break;
+                            }
+                            <div class="col-auto">
+                                <i class="bi bi-@icon"></i>
+                                <a href="@url">
+                                    @value
+                                </a>
+                            </div>
+                        }
+
+                    }
+
+                    void Contact(string type, string value)
+                    {
+                        if (!string.IsNullOrEmpty(value))
+                        {
+
+                            var icon = type.ToLower();
+                            <div class="col-auto">
+                                <i class="bi bi-@icon"></i> @value
+                            </div>
+                        }
+
+                    }
+
+
+
+                    SocialPlugin(nameof(u.Website), u.Website);
+
+                    SocialPlugin(nameof(u.TikTok), u.TikTok);
+                    SocialPlugin(nameof(u.Rumble), u.Rumble);
+
+                    SocialPlugin(nameof(u.Instagram), u.Instagram);
+                    SocialPlugin(nameof(u.LinkedIn), u.LinkedIn);
+                    SocialPlugin(nameof(u.Facebook), u.Facebook);
+                    SocialPlugin(nameof(u.Twitter), u.Twitter);
+                    SocialPlugin(nameof(u.YouTube), u.YouTube);
+
+
+                    Contact(nameof(u.Telegram), u.Telegram);
+                    Contact(nameof(u.Skype), u.Telegram);
+                    Contact(nameof(u.Whatsapp), u.Telegram);
+
+                }
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+@if (Model.FollowContent != null)
+{
+    @await Html.PartialAsync("_Followers", Model.FollowContent)
+    ;
+}
+else{
+
+
+    <ul class="nav nav-tabs profile-tabs my-1">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Replies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Highlights</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Likes</a>
+        </li>
+    </ul>
+
+
+    @await Html.PartialAsync("_StatementList", Model.StatementListVm)
+
+
+}

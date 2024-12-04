@@ -1,0 +1,160 @@
+﻿@model AppUser
+@{
+
+    var usr = Model ?? new AppUser();
+
+}
+
+
+<form method="post" id="loginForm" action="@Url.Action("Account")">
+
+
+
+    <div class="card text-bg-dark mb-3">
+        <div class="card-header border-secondary">Account</div>
+        @if (Session.GetString("WeSentYouTheVerificationCode") == "True")
+        {
+            <div class="card-header border-danger">We sent you the verification code</div>
+
+            Session.Remove("WeSentYouTheVerificationCode");
+
+        }
+        <div class="card-body">
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input name="Username" class="form-control" pattern="[\w]+" maxlength="33" required="required" value="@usr.Username">
+                </div>
+            </div>
+
+            @if (ViewBag.id == "NewPass" || Session.GetString("Username") == null)
+            {
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Password</label>
+                    <div class="col-sm-9">
+
+
+                        <div class="input-group mb-3">
+                            <input type="password" name="Password" id="mainPass" pattern="@AppUser.PassPattern" class="form-control"
+                                   data-bs-toggle="popover"
+                                   data-bs-trigger="hover"
+                                   title="Password rules"
+                                   data-bs-placement="bottom"
+                                   data-bs-content="Mininum 7 characters; 1 non-alpha."
+                                   data-bs-custom-class="popover-dark">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-eye" onclick="$('#mainPass').attr('type', 'text')"></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row mb-3 mode-register ">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Password check</label>
+                    <div class="col-sm-9">
+
+                        <div class="input-group mb-3">
+                            <input type="password" name="passCheck" id="passCheck" pattern="@AppUser.PassPattern" class="form-control">
+                            <span class="input-group-text">
+                                <i class="bi bi-eye" onclick="$('#passCheck').attr('type', 'text')"></i>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row mb-3">
+                    <label class="col-sm-3"></label>
+                    <div class="col-sm-9">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Account", new { id = "NewPass"})">Change password</a>
+                    </div>
+                </div>
+            }
+
+            <div class="row mb-3 mode-register ">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <div class="input-group mb-3">
+                        <input name="Email" class="form-control" value="@usr.Email">
+
+                        <span class="input-group-text">
+                            @if (!string.IsNullOrEmpty(usr.NuEmail))
+                            {
+                                <a href="@Url.Action("EmailVerify")">go verify</a>
+                            }
+                            else
+                            {
+                                <i class="bi bi-shield-check text-success"></i>
+                            }
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="card-footer bg-transparent p-3 border-primary">
+
+
+
+            <div class="row mode-login">
+
+
+                <div class="col-auto">
+                    <button onclick="login()" type="button" class="btn btn-primary">
+                        <i class="bi bi-door-open"></i>
+                        Login
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-outline-primary" type="button" onclick="showRegister()">
+                        <i class="bi bi-person-add"></i>
+                        Register
+                    </button>
+                </div>
+
+                <div class="col-auto">
+                    <button name="act" value="remindpass" type="submit" class="btn btn-outline-primary">
+                        <i class="bi bi-incognito"></i>
+                        Remind password
+                    </button>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row mode-register">
+                <div class="col-auto">
+                    <button name="act" value="reg" type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+</form>
+
+
+
+    <script id="scriptLogin" data-mode="@(Session.GetString("Username") == null? "register":"login" )" 
+        data-ismodal="@ViewBag.isModal" src="~/js/login.js?@ViewBag.refreshStatic"></script>

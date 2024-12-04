@@ -1,0 +1,126 @@
+﻿
+/*comment box */
+
+
+@dark-bg: #343a40;
+@focus-bg: black;
+@text-color: #ffffff;
+@border-color: #495057;
+@placeholder-color: #ced4da;
+@menu-hover-bg: black;
+
+.dark-textarea {
+    background-color: @dark-bg;
+    color: @text-color;
+    border: 1px solid @border-color;
+
+    &:focus {
+        background-color: @focus-bg;
+        color: @text-color;
+        border: 1px solid @border-color;
+    }
+
+    &::placeholder {
+        color: @placeholder-color;
+    }
+
+}
+
+.form-floating {
+    > .form-control {
+        &:focus {
+            padding-top: 2.2rem;
+            min-height: 75px;
+        }
+
+        &:not(:placeholder-shown) {
+            padding-top: 0.625rem !important;
+
+            + label {
+                display: none;
+            }
+        }
+    }
+}
+
+#mentions-context-menu {
+    display: none;
+    position: absolute;
+    background: @dark-bg;
+    border: 1px solid @border-color;
+    z-index: 1000;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow:clip;
+
+    div {
+        padding: 8px 12px;
+        cursor: pointer;
+        color: @text-color;
+
+        &:hover {
+            background-color: @menu-hover-bg;
+        }
+    }
+}
+
+.emphasized-statement {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+
+/*embedded */
+
+
+.social-container {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: black;
+    margin-bottom: 1rem;  
+
+
+    iframe,
+    blockquote,
+    .fb-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    iframe {
+        background-color: black;
+    }
+
+}
+
+
+
+.tiktok-container {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 50vh;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500px;
+        max-width: 100%;
+        height: 50vh;
+        border: 0;
+    }
+}
+
+
+.twitter-tweet{
+    max-width: min(95%, 550px) !important;
+}

@@ -1,0 +1,52 @@
+﻿@model vStatementWithStats
+@{
+
+    var wire = Session.GetInt32("LoginId") != null ? "onclick=" : "onclick=openLoginModal() x=";
+
+    string likeClass = "", repostClass = "", 
+        likeIcon = "star", 
+        repostIcon = "repeat";
+
+    if (Model.LikeUserId != null)
+    {
+        likeClass = "placed";
+        likeIcon += "-fill";
+    }
+    if (Model.RepostUserId != null)
+    {
+        repostClass = "placed";
+        repostIcon += "-1";
+    }
+
+
+}
+
+<div class="border-post border-top px-3 pt-2 mt-2 pt-sm-3 mt-sm-3 row stats">
+
+    <div class="col-auto">
+        <span @wire "timeline.editStatement(@Model.StatementId)" class="cursor-pointer">
+            <i class="bi bi-chat"></i>
+            @Model.ReplyCount
+        </span>
+    </div>
+
+    <div class="col-auto stats-like">
+        <span @wire "flip('like', @Model.StatementId, this )" class="cursor-pointer @likeClass">
+            <i class="bi bi-@likeIcon"></i>
+            <span class="stat-count">
+                @Model.LikeCount
+            </span>            
+        </span>
+    </div>
+
+    <div class="col-auto stats-repost">
+        <span @wire "flip('repost', @Model.StatementId, this)" class="cursor-pointer @repostClass">
+            <i class="bi bi-@repostIcon"></i>
+            <span class="stat-count">
+                @Model.RepostCount
+            </span>
+        </span>
+    </div>
+    
+
+</div>

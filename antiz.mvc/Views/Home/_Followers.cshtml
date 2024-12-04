@@ -1,0 +1,27 @@
+﻿@model IEnumerable<AppUser>
+
+
+@foreach (var usr in Model)
+{
+    var link = $"@{usr.Username}";
+
+    <div class="row border-secondary border-bottom p-1 p-sm-2 p-lg-3 cursor-pointer statement-in-list" >
+        <div class="col-auto d-none d-md-block">
+            <a href="@link" onclick="event.stopPropagation();">
+                <img class="avatar-thumb" src="@Url.Action("Photo", "BackEnd", new { id= usr.AvatarId})" />
+            </a>
+        </div>
+        <div class="col">
+            <div class="mb-1">
+                <a href="@link" onclick="event.stopPropagation();">
+                    <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= usr.AvatarId})" />
+                    <b class="text-white">@usr.Name</b> @@@usr.Username
+                </a>
+                
+            </div>
+            
+        </div>
+
+    </div>
+
+}

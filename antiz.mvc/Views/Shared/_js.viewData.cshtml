@@ -1,0 +1,16 @@
+﻿@using System.Text.Json
+@using Microsoft.AspNetCore.Html
+@{
+
+    var javascriptViewData = ViewData.Where(x => x.Key.StartsWith("javascript.")).ToDictionary(x => x.Key.Replace("javascript.", ""), x => x.Value);
+
+}
+<script>
+
+        window.bitMin = window.bitMin || {};
+
+        Object.assign(window.bitMin, {
+            viewData: @(new HtmlString(JsonSerializer.Serialize(javascriptViewData)))
+        });
+
+</script>

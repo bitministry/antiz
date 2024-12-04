@@ -1,0 +1,141 @@
+﻿@{
+
+    ViewBag.refreshStatic = DateTime.Now.Ticks;
+
+
+    ViewData["javascript.postUrl"] = Url.Action("Post", "Home", new { id = (string)null });
+    ViewData["javascript.addViewUrl"] = Url.Action("AddView", "BackEnd");
+    ViewData["javascript.newFollowUrl"] = Url.Action("NewFollow", "BackEnd");
+    ViewData["javascript.likeOrRepostUrl"] = Url.Action("LikeOrRepost", "BackEnd");
+    ViewData["javascript.loginModalUrl"] = @Url.Action( "Account", new { isModal = "true" } );
+
+    ViewData["javascript.editStatementUrl"] = @Url.Action("EditStatement", new { isModal = "true" });
+//    addStatementUrl
+    
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anti-zion, exposing genocide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Site.css?@ViewBag.refreshStatic">
+    <link rel="stylesheet" href="~/css/timeline.css?@ViewBag.refreshStatic">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    
+
+</head>
+<body class="bg-black text-white">
+    <div class="container-fluid">
+        <div class="row vh-100">
+
+            <nav class="col-1 col-md-3 col-lg-3 d-flex flex-column p-0">
+                <div class="sticky-top sidebar-container">
+                    <div class="p-0 p-md-3 sidebar">
+
+                        <a href="@Url.Action("Index")">
+                            <img src="~/image/logo_black.png" class="img-fluid d-none d-md-block" />
+                        </a>
+
+                        <ul class="list-unstyled mt-sm-3 sidebar-menu">
+                            <li>
+                                <a href="@Url.Action("Index")" class="nav-link px-0 px-md-2 py-2 fs-2">
+                                    <i class="bi bi-house"></i>
+                                    <span class="d-none d-md-inline">Home</span>
+
+                                </a>
+                            </li>
+                            @if (Session.GetString("Username") != null)
+                            {
+                                <li>
+                                    <a href="~/@( $"@{Session.GetString("Username") }" )" class="nav-link px-0 px-md-2 py-2 fs-2">
+                                        <i class="bi bi-person"></i>
+                                        <span class="d-none d-md-inline">Profile</span>
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Account")" class="nav-link px-0 px-md-2 py-2 fs-2">
+                                        <i class="bi bi-sliders"></i>
+                                        <span class="d-none d-md-inline">Account</span>
+
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                        @if (Session.GetString("Username") == null)
+                        {
+                            <button onclick="openLoginModal()" class="btn btn-primary mt-3 ">
+                                <i class="bi bi-door-open"></i>
+                                <span class="d-none d-sm-none d-md-inline">log in</span>
+                            </button>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action( "LogOff")" class="btn btn-primary mt-3 ">
+                                <i class="bi bi-door-open"></i>
+                                <span class="d-none d-sm-none d-md-inline">log off</span>
+                            </a>
+                        }
+
+
+
+                    </div>
+
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-11 col-md-8 col-lg-8 col-xl-7 col-xxl-6 overflow-auto p-1 p-sm-2 p-lg-3 bg-dark" style="overflow-x:hidden!important;">
+                @RenderBody()
+                <div id="timeline-loading" class="d-none py-3"><h1 class="text-center">loading..</h1></div>
+            </main>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-sm-down">
+            <div class="modal-content bg-dark" text-white>
+                <div class="modal-body">
+                    <div id="myModalContent">
+                        Loading...
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @await Html.PartialAsync("_js.viewData")
+
+    <script src="~/js/site.js?@ViewBag.refreshStatic"></script>
+    <script src="~/js/timeline.js?@ViewBag.refreshStatic"></script>
+    <script src="~/js/userProfile.js?@ViewBag.refreshStatic"></script>
+    <script src="~/js/mentions.js?@ViewBag.refreshStatic"></script>
+
+    <script async defer src='https://www.instagram.com/embed.js'></script>
+    <script async src='https://platform.twitter.com/widgets.js' charset='utf-8'></script>"
+
+    <script async defer crossorigin='anonymous'
+            src='https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0'>
+    </script>
+
+
+    <script async src='https://www.tiktok.com/embed.js'></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
