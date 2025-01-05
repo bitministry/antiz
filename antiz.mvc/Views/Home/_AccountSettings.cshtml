@@ -3,6 +3,8 @@
 
     var usr = Model ?? new AppUser();
 
+    var refreshStatic  = DateTime.Now.Ticks;
+
 }
 
 
@@ -87,7 +89,7 @@
                         <span class="input-group-text">
                             @if (!string.IsNullOrEmpty(usr.NuEmail))
                             {
-                                <a href="@Url.Action("EmailVerify")">go verify</a>
+                                <a class="text-danger" href="@Url.Action("EmailVerify")">go verify</a>
                             }
                             else
                             {
@@ -157,4 +159,4 @@
 
 
     <script id="scriptLogin" data-mode="@(Session.GetString("Username") == null? "register":"login" )" 
-        data-ismodal="@ViewBag.isModal" src="~/js/login.js?@ViewBag.refreshStatic"></script>
+        data-ismodal="@ViewBag.isModal" src="~/js/login.js?@refreshStatic"></script>

@@ -1,5 +1,6 @@
 ﻿@model StatementListVm
 
+
 @if ( Model.LoadMoreFrom == null )
 {    
     @await Html.PartialAsync("_AddPostForm", Model.AddPostVm )
@@ -19,17 +20,45 @@
 else 
     foreach (var stm in Model.Content)
     {
-        var link = $"@{stm.Username}";
+        var link = $"/@{stm.Username}";
+
+        if (Model.ReplyParents != null && stm.ReplyTo.HasValue )
+        {
+            var prt = Model.ReplyParents[stm.ReplyTo.Value];
+
+            <div class="row p-1 p-sm-2 p-lg-3 reply-parent-in-list" data-statementid="@prt.StatementId">
+                <div class="col-auto d-none d-md-block reply-parent-avatar">
+                    <a href="@link">
+                        <img class="avatar-thumb" src="@Url.Action("Photo", "BackEnd", new { id= prt.AvatarId})" />
+                    </a>
+                </div>
+                <div class="col">
+                    <div class="mb-1">
+                        <a href="@link">
+                            <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= prt.AvatarId})" />
+                            <b class="text-white">@prt.Name</b> @@@prt.Username
+                        </a>
+                        <span class="text-secondary" data-fromnow="@prt.Created"></span>
+                    </div>
+                    <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer" onclick="navigateToPost( this )">
+                        @prt.Message 
+                    </div>
+
+                </div>
+            </div>
+
+        
+        }
 
         <div class="row border-secondary border-bottom p-1 p-sm-2 p-lg-3 statement-in-list" data-statementid="@stm.StatementId">
             <div class="col-auto d-none d-md-block">
-                <a href="@link" onclick="event.stopPropagation();">
+                <a href="@link" >
                     <img class="avatar-thumb" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
                 </a>
             </div>
             <div class="col">
                 <div class="mb-1">
-                    <a href="@link" onclick="event.stopPropagation();" >
+                    <a href="@link" >
                         <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
                         <b class="text-white">@stm.Name</b> @@@stm.Username                 
                     </a>

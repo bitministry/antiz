@@ -26,6 +26,9 @@ a {
   text-align: center;
   max-width: 350px;
 }
+.border-gray {
+  border-color: rgba(255, 255, 255, 0.11) !important;
+}
 @media (min-width: 768px) {
   .sidebar-menu li {
     width: 200px;
@@ -69,8 +72,20 @@ PROFILE*/
   left: 20px;
   border: 2px solid white;
 }
+.profile-tabs {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.profile-tabs .nav-item:first-child {
+  width: 1rem;
+}
 .profile-tabs .nav-link {
   padding: 0.5rem 2rem;
+}
+@media (max-width: 550px) {
+  .profile-tabs .nav-link {
+    padding: 0.5rem 1rem;
+  }
 }
 .stats {
   color: rgba(255, 255, 255, 0.44);

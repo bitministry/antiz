@@ -1,9 +1,10 @@
 ﻿using BitMinistry.Data.Wrapper; 
 using Microsoft.AspNetCore.Http;
-using Org.BouncyCastle.Math.EC;
-using System;
+using BitMinistry;
+using BitMinistry.Data;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace antiz.mvc
 {
@@ -26,9 +27,12 @@ namespace antiz.mvc
         {
             AppUser = Id.LoadEntity<vAppUser>(x => x.Username);
 
+            AppUser.ThrowIfNull("no user at " + Id);
+
             switch (XCase)
             {
                 case Case.Posts:
+                case Case.Likes:
                 case Case.Replies:
                 case Case.Highlights:
                     StatementListVm = new StatementService()
@@ -44,13 +48,13 @@ namespace antiz.mvc
                     break;
 
                 case Case.Following:
-                    FollowContent = (@"select * from AppUser u 
+                    FollowContent = (@"select u.* from AppUser u 
                         join Follow f on f.TargetId = u.UserId 
                         where f.UserId = " + AppUser.UserId).QueryForSql<AppUser>();                            
                     break;
 
                 case Case.Followers:
-                    FollowContent = (@"select * from AppUser u 
+                    FollowContent = (@"select u.* from AppUser u 
                         join Follow f on f.UserId = u.UserId 
                         where f.TargetId = " + AppUser.UserId).QueryForSql<AppUser>();
                     break;

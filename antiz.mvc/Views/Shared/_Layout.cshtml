@@ -3,13 +3,14 @@
     ViewBag.refreshStatic = DateTime.Now.Ticks;
 
 
-    ViewData["javascript.postUrl"] = Url.Action("Post", "Home", new { id = (string)null });
+    ViewData["javascript.postUrl"] = Url.Action("Post",new { id = (string)null });
     ViewData["javascript.addViewUrl"] = Url.Action("AddView", "BackEnd");
     ViewData["javascript.newFollowUrl"] = Url.Action("NewFollow", "BackEnd");
     ViewData["javascript.likeOrRepostUrl"] = Url.Action("LikeOrRepost", "BackEnd");
-    ViewData["javascript.loginModalUrl"] = @Url.Action( "Account", new { isModal = "true" } );
+    ViewData["javascript.loginModalUrl"] = Url.Action( "Account", new { isModal = "true" } );
+    ViewData["javascript.fetchUsersUrl"] = Url.Action("GetUserSuggestions", "BackEnd");
 
-    ViewData["javascript.editStatementUrl"] = @Url.Action("EditStatement", new { isModal = "true" });
+    ViewData["javascript.editStatementUrl"] = Url.Action("EditStatement", new { id = (string)null, isModal = "true" });
 //    addStatementUrl
     
 }
@@ -119,6 +120,8 @@
 
 
     @await Html.PartialAsync("_js.viewData")
+
+    <script src="~/js/funny.js"></script>
 
     <script src="~/js/site.js?@ViewBag.refreshStatic"></script>
     <script src="~/js/timeline.js?@ViewBag.refreshStatic"></script>

@@ -5,7 +5,8 @@
 @my-lightprimary: mix(white, @bs-primary, 60%);
 @my-lightsuccess: mix(white, @bs-success, 60%);
 @my-lightdanger: mix(white, @bs-danger, 70%);
-@my-darkerwhite: rgba(white, 44%); 
+@my-darkerwhite: rgba(white, 44%);
+@my-darkgray: rgba(white, 11%); 
 
 body {
     font-size: 15px;
@@ -38,6 +39,10 @@ a {
 .sidebar {
     text-align: center;
     max-width:350px;
+}
+
+.border-gray {
+    border-color: @my-darkgray !important;
 }
 
 
@@ -86,7 +91,7 @@ a {
 PROFILE*/
 
 
-    .profile-coverphoto {
+.profile-coverphoto {
     object-fit: cover;
     max-height:200px;
 }
@@ -98,25 +103,39 @@ PROFILE*/
     border: 2px solid white
 }
 
-.profile-tabs .nav-link {
-    padding: 0.5rem 2rem;
-}
+.profile-tabs {
+    margin-left: -1rem;
+    margin-right: -1rem;
 
-
-.stats {
-    color: @my-darkerwhite;
-
-    .stats-like {
-        .placed {
-            font-weight: 1000;
-            color: @my-lightsuccess;
-        }
+    .nav-item:first-child{
+        width:1rem;
+        
     }
 
-    .stats-repost {
-        .placed {
-            font-weight: 1000;
-            color: @my-lightdanger;
+    .nav-link {
+        padding: 0.5rem 2rem;
+
+        @media (max-width: 550px) {
+            padding: 0.5rem 1rem;
         }
     }
 }
+
+
+    .stats {
+        color: @my-darkerwhite;
+
+        .stats-like {
+            .placed {
+                font-weight: 1000;
+                color: @my-lightsuccess;
+            }
+        }
+
+        .stats-repost {
+            .placed {
+                font-weight: 1000;
+                color: @my-lightdanger;
+            }
+        }
+    }

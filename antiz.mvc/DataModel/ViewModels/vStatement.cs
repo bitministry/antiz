@@ -5,9 +5,11 @@ using System.Text.RegularExpressions;
 
 namespace antiz.mvc
 {
-    public class vStatementWithStats  : vStatement{
-        public int? LikeUserId { get; set; }
-        public int? RepostUserId { get; set; }
+    public class ft_StatementWithStats  : vStatement{
+        public bool IsLike { get; set; }
+        public bool IsRepost { get; set; }
+
+        
     }
 
     public class vStatement : Statement

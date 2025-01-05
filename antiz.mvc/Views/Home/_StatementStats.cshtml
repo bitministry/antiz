@@ -1,18 +1,18 @@
-﻿@model vStatementWithStats
+﻿@model ft_StatementWithStats
 @{
 
-    var wire = Session.GetInt32("LoginId") != null ? "onclick=" : "onclick=openLoginModal() x=";
+    var login = Session.GetInt32("LoginId").HasValue.ToString().ToLower();
 
     string likeClass = "", repostClass = "", 
         likeIcon = "star", 
         repostIcon = "repeat";
 
-    if (Model.LikeUserId != null)
+    if (Model.IsLike )
     {
         likeClass = "placed";
         likeIcon += "-fill";
     }
-    if (Model.RepostUserId != null)
+    if (Model.IsRepost )
     {
         repostClass = "placed";
         repostIcon += "-1";
@@ -24,14 +24,25 @@
 <div class="border-post border-top px-3 pt-2 mt-2 pt-sm-3 mt-sm-3 row stats">
 
     <div class="col-auto">
-        <span @wire "timeline.editStatement(@Model.StatementId)" class="cursor-pointer">
-            <i class="bi bi-chat"></i>
-            @Model.ReplyCount
-        </span>
+        @if (Model.AuthorId == Session.GetInt32("LoginId"))
+        {
+            <span onclick="statFunc(this, @login, 'post-id', @Model.StatementId)" class="btn border-light btn-secondary btn-sm">
+                <i class="bi bi-pencil"></i>
+                Edit 
+            </span>
+
+        }
+        else
+        {
+            <span onclick="statFunc(this, @login, 'post-replyTo', @Model.StatementId)" class="cursor-pointer">
+                <i class="bi bi-chat"></i>
+                @Model.ReplyCount
+            </span>
+        }        
     </div>
 
     <div class="col-auto stats-like">
-        <span @wire "flip('like', @Model.StatementId, this )" class="cursor-pointer @likeClass">
+        <span onclick="statFunc(this, @login, 'like', @Model.StatementId )" class="cursor-pointer @likeClass">
             <i class="bi bi-@likeIcon"></i>
             <span class="stat-count">
                 @Model.LikeCount
@@ -40,7 +51,7 @@
     </div>
 
     <div class="col-auto stats-repost">
-        <span @wire "flip('repost', @Model.StatementId, this)" class="cursor-pointer @repostClass">
+        <span onclick="statFunc(this, @login, 'repost', @Model.StatementId )" class="cursor-pointer @repostClass">
             <i class="bi bi-@repostIcon"></i>
             <span class="stat-count">
                 @Model.RepostCount
@@ -48,5 +59,13 @@
         </span>
     </div>
     
+    <div class="col-auto stats-repost">
+        <span >
+            <i class="bi bi-bar-chart"></i>
+            <span class="stat-count">
+                @Model.ViewCount
+            </span>
+        </span>
+    </div>
 
 </div>

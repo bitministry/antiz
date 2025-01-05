@@ -22,7 +22,7 @@
 .form-floating > .form-control:not(:placeholder-shown) + label {
   display: none;
 }
-#mentions-context-menu {
+.mention-context-menu {
   display: none;
   position: absolute;
   background: #343a40;
@@ -32,16 +32,32 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   overflow: clip;
 }
-#mentions-context-menu div {
+.mention-context-menu div {
   padding: 8px 12px;
   cursor: pointer;
   color: #ffffff;
 }
-#mentions-context-menu div:hover {
+.mention-context-menu div:hover {
   background-color: black;
 }
 .emphasized-statement {
   background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.reply-parent-in-list {
+  padding-bottom: 0 !important;
+  background-color: #1a1d20;
+}
+.reply-parent-avatar {
+  position: relative;
+}
+.reply-parent-avatar::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: white;
 }
 /*embedded */
 .social-container {

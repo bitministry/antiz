@@ -1,4 +1,9 @@
-﻿@model AddPostVm 
+﻿@model AddPostVm
+@{
+    if (Model.Message == null && Model.TargetUsername != null)
+        Model.Message = $"@{Model.TargetUsername} ";
+
+}
 
 
     <form method="post" action="@Url.Action("Post")" class="mt-3" id="addPostForm">
@@ -9,13 +14,10 @@
         <div class="input-group">
 
             <div class="form-floating">
-                <textarea name="@nameof(Model.Message)" @(Session.GetString("Username") == null ? "onclick=openLoginModal()" : "" ) 
-                          class="form-control border-primary dark-textarea"
-                          placeholder="Leave a comment here"
-                          id="floatingTextarea">@Model.Message</textarea>
-                <label for="floatingTextarea">add your comment..</label>
-                <div id="mentions-context-menu" >
-                </div>
+                <textarea name="@nameof(Model.Message)" @(Session.GetString("Username") == null ? "onclick=openLoginModal()" : "" )
+                      class="form-control border-primary dark-textarea add-post-textarea"
+                          placeholder="Leave a comment here">@Model.Message</textarea>
+                <label >add your comment..</label>
             </div>
 
 
@@ -35,15 +37,19 @@
 
 
 
-    <script>
 
-        $(document).ready(function () {
-            MentionContextPopup.init({
-                textareaSelector: "#floatingTextarea",
-                contextMenuSelector: "#mentions-context-menu",
-                fetchUsersUrl: "@Url.Action("GetUserSuggestions", "BackEnd")"
-            });
-        });
+        @if (ViewData["IsModal"] == "true" ){
+            <script>
+                mentions.init();
+            </script>
+        }
+        else {
+            <script>
+                $(document).ready(function () {
+                    mentions.init();
+                });
+            </script>
+        }
 
-    </script>
+    
 

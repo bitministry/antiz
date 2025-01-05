@@ -1,74 +1,75 @@
-﻿const MentionContextPopup = {
-    init: function (options) {
-        this.$textarea = $(options.textareaSelector);
-        this.$contextMenu = $(options.contextMenuSelector);
-        this.fetchUsersUrl = options.fetchUsersUrl;
+﻿
 
-        this.mentionQuery = "";
-        this.mentionPosition = { top: 0, left: 0 };
+var MentionContextPopup = function(el) {
 
-        this.bindEvents();
-    },
+    
+    let $textarea = $(el);
+    let fetchUsersUrl = bitMin.viewData.fetchUsersUrl;
 
-    bindEvents: function () {
-        const self = this;
+    let mentionQuery = "";
+    let mentionPosition = { top: 0, left: 0 };
 
-        this.$textarea.on("input", function () {
-            self.autoResizeTextarea(this);  
+    let $contextMenu = null;
 
-            const text = self.$textarea.val();
-            const cursorPos = this.selectionStart;
+    $textarea.on("input", function () {
+        autoResizeTextarea(this);
 
-            // Detect `@` mention
-            const textBeforeCursor = text.substring(0, cursorPos);
-            const lastWord = textBeforeCursor.split(/\s+/).pop();
+        const text = $textarea.val();
+        const cursorPos = this.selectionStart;
 
-            if (lastWord.startsWith("@") && lastWord.length > 1 ) {
-                self.mentionQuery = lastWord.substring(1); // Get text after `@`
-                const textareaOffset = self.$textarea.offset();
-                const caretPos = self.getCaretCoordinates(this, cursorPos);
+        // Detect `@` mention
+        const textBeforeCursor = text.substring(0, cursorPos);
+        const lastWord = textBeforeCursor.split(/\s+/).pop();
 
-                self.mentionPosition = {
-                    top: caretPos.top,
-                    left: caretPos.left,
-                };
+        if (lastWord.startsWith("@") && lastWord.length > 1) {
+            mentionQuery = lastWord.substring(1); // Get text after `@`
+            const textareaOffset = $textarea.offset();
+            const caretPos = getCaretCoordinates(this, cursorPos);
 
-                self.fetchSuggestions(self.mentionQuery);
-            } else {
-                self.hideContextMenu();
-            }
-        });
-    },
+            mentionPosition = {
+                top: caretPos.top,
+                left: caretPos.left,
+            };
 
-    autoResizeTextarea: function (textarea) {
+            fetchSuggestions(mentionQuery);
+        } else {
+            hideContextMenu();
+        }
+    });
+
+    let autoResizeTextarea = function (textarea) {
         textarea.style.height = "auto"; // Reset height
         textarea.style.height = textarea.scrollHeight + "px"; // Adjust to fit content
-    },
+    };
 
-    fetchSuggestions: function (id) {
-        const self = this;
+    let fetchSuggestions = function (id) {
 
-        
         $.ajax({
-            url: this.fetchUsersUrl,
+            url: fetchUsersUrl,
             type: "GET",
-            data: { id }, 
+            data: { id },
             success: function (response) {
                 if (Array.isArray(response) && response.length > 0) {
-                    self.showContextMenu(response, self.mentionPosition);
+                    showContextMenu(response, mentionPosition);
                 } else {
-                    self.hideContextMenu();
+                    hideContextMenu();
                 }
             },
             error: function () {
                 console.error("Failed to fetch suggestions.");
-                self.hideContextMenu();
+                hideContextMenu();
             },
         });
-    },
+    };
 
-    showContextMenu: function (suggestions, position) {
-        const self = this;
+    let showContextMenu = function (suggestions, position) {
+
+        $contextMenu = $textarea.siblings(".mention-context-menu");
+
+        // Create a unique context menu if it doesn't exist
+        if ($contextMenu.length === 0) {
+            $contextMenu = $('<div class="mention-context-menu"></div>').appendTo($textarea.parent());
+        }
 
         const tmpl = (user) => `
                 <div class="row border-bottom border-secondary" data-username=${user.username}>
@@ -76,41 +77,42 @@
                         <img class="avatar-thumb" src="/backend/Photo/${user.avatarId}">
                     </div>
                     <div class="col-auto">
-                        <b>${user.name||""}</b><br>
+                        <b>${user.name || ""}</b><br>
                         @${user.username}
                     </div>
                 </div>`
 
-        this.$contextMenu.empty()
+        $contextMenu.empty()
             .append(suggestions.map((user) => tmpl(user)).join(""))
             .css({ top: position.top, left: position.left, display: "block" });
 
-        this.$contextMenu.find("div.row").on("click", function () {
-            self.insertMention($(this).data('username'));
-            self.hideContextMenu();
+        $contextMenu.find("div.row").on("click", function () {
+            insertMention($(this).data('username'));
+            hideContextMenu();
         });
-    },
+    };
 
-    hideContextMenu: function () {
-        this.$contextMenu.hide();
-    },
+    let hideContextMenu = function () {
+        $contextMenu?.hide();
+    };
 
-    insertMention: function (user) {
-        const text = this.$textarea.val();
-        const cursorPos = this.$textarea[0].selectionStart;
+    let insertMention = function (user) {
+        const text = $textarea.val();
+        const cursorPos = $textarea[0].selectionStart;
         const textBeforeCursor = text.substring(0, cursorPos);
         const textAfterCursor = text.substring(cursorPos);
         const lastWord = textBeforeCursor.split(/\s+/).pop();
 
         const updatedText = textBeforeCursor.replace(new RegExp(`${lastWord}$`), `@${user} `) + textAfterCursor;
-        this.$textarea.val(updatedText);
+        $textarea.val(updatedText);
 
         // Move cursor to the end of the inserted mention
         const newCursorPos = textBeforeCursor.length - lastWord.length + user.length + 2;
-        this.$textarea[0].setSelectionRange(newCursorPos, newCursorPos);
-        this.$textarea.focus();
-    },
-    getCaretCoordinates: function (element, cursorPos) {
+        $textarea[0].setSelectionRange(newCursorPos, newCursorPos);
+        $textarea.focus();
+    };
+
+    let getCaretCoordinates = function (element, cursorPos) {
         const textBeforeCursor = element.value.substring(0, cursorPos);
         const lines = textBeforeCursor.split("\n"); // Split by newlines for multi-line support
 
@@ -155,4 +157,18 @@
     }
 
 
+};
+
+
+const mentions = {
+    menus: [],
+    init: function () {
+        $(".add-post-textarea").each(function (ix, el) {
+
+            if (mentions.menus.includes(el)) return;
+
+            el.mentions = new MentionContextPopup(el);
+            mentions.menus.push(el);
+        });
+    }
 };

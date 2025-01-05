@@ -1,5 +1,6 @@
 ﻿
-const $scrpt = $("#scriptLogin");
+var $scrpt = $("#scriptLogin");
+
 
 $(function () {
 
@@ -27,7 +28,7 @@ function login() {
 
     if ( $scrpt.data('ismodal') ) {
 
-        const formData = $form.serialize();
+        var formData = $form.serialize();
         formData += '&act=login&isModal=true';
 
         $.ajax({
@@ -35,7 +36,14 @@ function login() {
             type: "POST",
             data: formData,
             success: function (response) {
-                location.reload();
+
+                if (window.loginCallback)
+                    window.loginCallback();
+
+                if (window.loginRedirect != null)
+                    location.href = window.loginRedirect;
+                else
+                    location.reload();
             },
             error: function (xhr) {
                 $("#myModalContent").html(xhr.responseText)                

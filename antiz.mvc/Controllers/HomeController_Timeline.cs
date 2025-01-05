@@ -1,6 +1,7 @@
 ﻿using BitMinistry;
 using BitMinistry.Data.Wrapper;
 using BitMinistry.Utility;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -43,16 +44,18 @@ namespace antiz.mvc
         [HttpPost]
         public ActionResult Post(Statement comment)
         {
-            Session.GetString("UserId").ThrowIfNull();
+            var login = Session.GetInt32("LoginId");
+            if (!login.HasValue)
+                throw new Exception("No login!");
 
             if (comment.StatementId != null)
             { 
                 var exist = comment.StatementId.Value.LoadEntity<Statement>();
-                if ( exist.AuthorId != Session.GetInt32("LoginId"))
+                if ( exist.AuthorId != login)
                     throw new UnauthorizedAccessException("not your comment!");
             }                
 
-            comment.AuthorId = Session.GetInt32("LoginId").Value;
+            comment.AuthorId = login.Value;
 
             var model = _statementServ.Post( comment );
 
@@ -65,7 +68,7 @@ namespace antiz.mvc
 
             var loginId = Session.GetInt32("LoginId") ?? -1;
 
-            var model = _statementServ.vStatementWithStats( statementId: id, loginId: loginId) 
+            var model = _statementServ.vStatementWithStats( statementId: id, login: loginId) 
                 .GetClone<PostVm>();
             model.LoadMoreFrom = loadMoreFrom; 
 
@@ -77,8 +80,21 @@ namespace antiz.mvc
         }
 
 
-        public PartialViewResult EditStatement(int id) {
-            var model = id.LoadEntity<Statement>();
+        public PartialViewResult EditStatement(int? id, int? replyTo ) {
+
+            Statement model;
+
+            if (id.HasValue)
+            {
+                model = id.Value.LoadEntity<Statement>();
+                model.ThrowIfNull( "no statement at "+ id );
+            }
+            else
+                model = new Statement()
+                {
+                    ReplyTo = replyTo
+                };
+            
             return PartialView( "_AddPostForm", model );
         }
 
@@ -95,8 +111,10 @@ namespace antiz.mvc
 
     
         // [Route("Error")]
-        public IActionResult Error(Exception ex)
+        public IActionResult Error()
         {
+            var ex= HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+
             var model = new ExceptionVm
             {
                 ExceptionMessage = ex.Message,

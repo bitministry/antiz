@@ -6,11 +6,15 @@ function updateTimeAgo() {
         $(this).html(d.fromNow());
         $(this).attr("title", d.format("dddd, MMMM Do YYYY, h:mm:ss a"));
     });
-    setTimeout("updateTimeAgo()", 20000);
+    setTimeout("updateTimeAgo()", 2000);
 
 }
 
-function openLoginModal() { openToModal( bitMin.viewData.loginModalUrl ); }
+function openLoginModal(callback, redirect) {
+    window.loginRedirect = redirect;
+    window.loginCallback = callback; 
+    openToModal(bitMin.viewData.loginModalUrl, callback, redirect );
+}
 
 function openToModal(url) {
     if (!url.startsWith("http"))
@@ -21,6 +25,7 @@ function openToModal(url) {
         $('#myModalContent').find('script').each(function (ix, el) {
             const script = document.createElement('script');
             script.src = el.src;
+//            script.innerText = el.innerText;
             script.async = true;
             document.body.appendChild(script); 
         });
@@ -30,11 +35,41 @@ function openToModal(url) {
 }
 
 function navigateToPost(el) {
-    const statementId = $(el).closest(".statement-in-list").data("statementid") || $(el).data("statementid");
+    const statementId = $(el).closest(".statement-in-list, .reply-parent-in-list").data("statementid") || $(el).data("statementid");
 
     const url = `${location.origin}${bitMin.viewData.postUrl}/${statementId}`;
 
     location.href = url; 
+
+}
+
+function statFunc(src, islogin, xcase, statementId) {
+    event.stopPropagation();
+
+    const $src = $(src);
+    const postUrl = location.origin + bitMin.viewData.postUrl + '/' + statementId;
+
+    switch (xcase) {
+        case 'post-id':
+        case 'post-replyTo':
+            if (islogin)
+                timeline.editStatement(statementId, xcase.replace( "post-", "" ));
+            else 
+                openLoginModal(undefined, postUrl );
+
+            break;
+        case 'like':
+        case 'repost':
+            const myflip = () => flip(xcase, statementId, $src);
+            if (islogin)
+                myflip();
+            else
+                openLoginModal(myflip, postUrl);
+
+            break;
+
+    }
+
 
 }
 
@@ -49,12 +84,10 @@ const interactIcons = {
     },
 }
 
-function flip(what, statementId, evtSrc) {
-    event.stopPropagation();
+function flip(what, statementId, $src) {
 
     const url = `${location.origin}${bitMin.viewData.likeOrRepostUrl}/${what}?statementId=${statementId}`;
 
-    const $src = $(evtSrc);
     $.get(url ).done(function ( data ) {
         $counter = $src.find(".stat-count");
         $icon = $src.find("i");

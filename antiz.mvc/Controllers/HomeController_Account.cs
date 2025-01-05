@@ -154,6 +154,7 @@ namespace antiz.mvc
 
             // Update user fields in the database
             model.UpdateOnly(ignoreDefaults: false,
+                x=> x.Name, x=> x.Bio, 
                 x => x.Landline, x => x.Mobile, x => x.Website,
                 x => x.Telegram, x => x.Skype, x => x.Viber, x => x.Whatsapp,
                 x => x.Instagram, x => x.TikTok, x => x.Facebook, x => x.LinkedIn,

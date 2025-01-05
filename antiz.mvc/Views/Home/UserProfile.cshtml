@@ -21,15 +21,21 @@
             <h2>
                 @u.Name
             </h2>
-            <h5>@u.Username</h5>
+            <h5>
+                @u.Username
+                @if (string.IsNullOrEmpty(u.NuEmail))
+                {
+                    <i class="bi bi-patch-check"></i>
+                }
+            </h5>
 
             <div class="d-flex mb-4">
-                <a href="@Url.Action("Followers", new { id = Model.AppUser.Username, @case = ProfileVm.Case.Following })" class="me-4">
+                <a href="@Url.Action("UserProfile", new { id = Model.AppUser.Username, xcase = ProfileVm.Case.Following })" class="me-4">
                     <strong>@u.IamFollowingCount</strong> 
                     Following
                 </a>
 
-                <a href="@Url.Action("Followers", new { id = Model.AppUser.Username, @case = ProfileVm.Case.Followers })" class="me-4">
+                <a href="@Url.Action("UserProfile", new { id = Model.AppUser.Username, xcase = ProfileVm.Case.Followers })" class="me-4">
                     <strong>@u.PeopleFollowMeCount </strong> 
                     Followers
                 </a>
@@ -39,14 +45,14 @@
         </div>
 
 
-        <div class="col-6 col-sm-7 col-lg-8 col-xl-8 pt-4">
+        <div class="col-6 col-sm-7 col-lg-8 col-xl-8 pt-4 pb-3">
 
             <div class="d-flex mb-3">
                 <p class="col pe-2">
                     @u.Bio
                     <br />
                     <span class="text-secondary">
-                        <i class="bi bi-calendar"></i> Joined @(u.Joined?.ToString("d"))
+                        <i class="bi bi-calendar"></i> Joined @(u.Joined?.ToString("Y"))
                     </span>
                 </p>
                 <div class="col-auto ">
@@ -104,7 +110,7 @@
 
                                     break;
 
-                                case "WebSite":
+                                case "Website":
                                     url = $"http://{value}";
                                     icon = "link";
                                     break;
@@ -165,25 +171,23 @@
 
 @if (Model.FollowContent != null)
 {
-    @await Html.PartialAsync("_Followers", Model.FollowContent)
+    @await Html.PartialAsync("_Followers", Model)
     ;
 }
 else{
 
+    var profileUrl = "/@" + Model.AppUser.Username;
 
     <ul class="nav nav-tabs profile-tabs my-1">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Posts</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Replies</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Highlights</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Likes</a>
-        </li>
+        <li class="nav-item"></li>
+        @foreach (var xcase in new[] { ProfileVm.Case.Posts, ProfileVm.Case.Replies, ProfileVm.Case.Highlights, ProfileVm.Case.Likes})
+        {
+            <li class="nav-item">
+                <a class="nav-link @( Model.XCase == xcase ? "active" : "" )" href="@profileUrl/@xcase">@xcase</a>
+            </li>
+        
+        }
+ 
     </ul>
 
 

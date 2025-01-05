@@ -1,4 +1,5 @@
 ﻿using BitMinistry;
+using BitMinistry.Data;
 using BitMinistry.Data.Wrapper;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,17 @@ namespace antiz.mvc
 
         public const int PageSize = 22;
 
-        public vStatementWithStats vStatementWithStats(int statementId, int loginId ) => 
-            @$"StatementId = {statementId}
-                and ISNULL(LikeUserId, {loginId}) = {loginId}
-                and ISNULL(RepostUserId, {loginId}) = {loginId}".QueryForEntity<vStatementWithStats>().FirstOrDefault();
+        public ft_StatementWithStats vStatementWithStats(int statementId, int login)  {
+
+            using (var sql = new BSqlCommander(comType: CommandType.StoredProcedure))
+            {
+                sql.AddWithValue("@statementId", statementId);
+                sql.AddWithValue("@login", login);
+
+                return sql.QueryForSql<ft_StatementWithStats>("sp_StatementWithStats", reset: false )
+                    .FirstOrDefault();
+            }
+        }
 
         public StatementListVm GetStatementListVm(int loginId, string sqlProc, int? loadMoreFrom, params ValueTuple<string, object>[] additionalParams )
         {
@@ -37,7 +45,23 @@ namespace antiz.mvc
                     foreach (var param in additionalParams)
                         sql.AddWithValue(param.Item1, param.Item2);
 
-                    model.Content = sql.QueryForSql<vStatementWithStats>(sqlProc, reset: false);
+                    model.Content = sql.QueryForSql<ft_StatementWithStats>(sqlProc, reset: false);
+
+                    var withParents = model.Content.Where(x => x.ReplyTo.HasValue);
+
+                    if (withParents.Any() && sqlProc != "sp_replies")
+                    {
+                        int[] ids = withParents.Select(x => x.ReplyTo.Value).Distinct().ToArray();
+
+                        sql.Reset();
+                        var par = ids.ToSqlParameter("@statements");
+                        sql.Com.Parameters.Add(par);
+                        var query = "select s.* from @statements x join vStatement s on s.statementid = x.id";
+
+                        model.ReplyParents = sql.QueryForSql<vStatement>(query, reset: false)
+                            .ToDictionary(x => x.StatementId.Value, x => x);
+
+                    }
 
                 }
             return model;
@@ -46,9 +70,14 @@ namespace antiz.mvc
         static Regex _urlRex = new Regex(@"((http|https|ftp)://[^\s/$.?#].[^\s]*)|www\.[^\s/$.?#].[^\s]*");
         static HashSet<string> _videoProviders = new HashSet<string>(new[] { "youtube.com", "tiktok.com", "x.com", "twitter.com", "facebook.com", "instagram.com", "rumble.com", "vimeo.com" });
 
+        static Regex _mentionsRex = new Regex(@"@\w+");
+
         public Statement Post( Statement stm ) {
             stm.RenderedMessage = stm.Message.NewLineToBR();
             var notYetEmbedded = true;
+
+            foreach (var m in _mentionsRex.Matches(stm.Message).Cast<Match>())
+                stm.RenderedMessage = stm.RenderedMessage.Replace(m.Value, $"<a href='/@{m.Value.Substring(1)}'>{m.Value}</a>");
 
             foreach (var m in _urlRex.Matches(stm.Message).Cast<Match>().Reverse())
             {                

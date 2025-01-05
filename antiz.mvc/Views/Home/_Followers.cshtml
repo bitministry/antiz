@@ -1,24 +1,39 @@
-﻿@model IEnumerable<AppUser>
+﻿@model ProfileVm 
 
+<div class="border-white border-bottom mt-1">
 
-@foreach (var usr in Model)
+    <h4 class="float-end">
+        @Model.XCase
+    </h4>
+    <div class="clearfix"></div>
+</div>
+
+@foreach (var usr in Model.FollowContent)
 {
-    var link = $"@{usr.Username}";
+    var link = $"/@{usr.Username}";
 
-    <div class="row border-secondary border-bottom p-1 p-sm-2 p-lg-3 cursor-pointer statement-in-list" >
+    <div class="row border-secondary border-bottom p-1 p-sm-2 p-lg-3 " >
         <div class="col-auto d-none d-md-block">
             <a href="@link" onclick="event.stopPropagation();">
                 <img class="avatar-thumb" src="@Url.Action("Photo", "BackEnd", new { id= usr.AvatarId})" />
             </a>
         </div>
-        <div class="col">
-            <div class="mb-1">
+        <div class="col-auto mb-1">
+            <div class="border-gray border-bottom">
                 <a href="@link" onclick="event.stopPropagation();">
                     <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= usr.AvatarId})" />
                     <b class="text-white">@usr.Name</b> @@@usr.Username
                 </a>
-                
+                @if (!string.IsNullOrEmpty(usr.Website))
+                {
+                    <a class="float-end ps-3" href="@usr.Website.HttpChk()" target="_blank">
+                        <i class="bi bi-link"></i>
+                        @usr.Website
+                    </a>
+                }
             </div>
+
+            @usr.Bio
             
         </div>
 

@@ -4,6 +4,8 @@
 
     intervalToTriggerLoadMoreOnBottom : 777, 
 
+    replyParents : new Set(),
+
     init: function () {
         this.statementIdQueue = []; // Array to collect statement IDs
         this.timerStarted = false; // To ensure only one timer runs
@@ -121,15 +123,29 @@
             url: url,
             type: 'GET',
             success: (data) => {
-                const $newItems = $("<div>").html(data).find(".statement-in-list");
+                const $newItems = $("<div>").html(data).find(".statement-in-list, .reply-parent-in-list");
 
                 if ($newItems.length > 0) {
+
+                    $newItems.filter(".reply-parent-in-list").each(function (ix, el) {
+                        var id = $(el).data("statementid");
+                        if (timeline.replyParents.has(id))
+                            $(el).addClass("d-none");
+                        else
+                            timeline.replyParents.add(id);
+
+                    });
+
                     $('#timelineContainer').append($newItems);
                     timeline.addNewElements($newItems);
                 }
 
                 $('#timeline-loading').addClass("d-none");
                 timeline.isLoading = false;
+
+                // trigger embeds 
+
+                instgrm?.Embeds.process()
 
             },
             error: (xhr, status, error) => {
@@ -138,8 +154,10 @@
         });
     }, 
 
-    editStatement: function (statementId) {
-        openToModal(bitMin.viewData.editStatementUrl +'/'+ statementId);
+    editStatement: function ( statementId, what = "id") {
+        var url = addQueryToUrl(bitMin.viewData.editStatementUrl, what + "=" + statementId)
+        $('#myModal .modal-dialog').addClass("modal-lg");
+        openToModal( url );
     },
 
     postStatementUpdate: function (btn) {

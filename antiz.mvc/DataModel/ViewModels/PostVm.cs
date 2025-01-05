@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace antiz.mvc
 {
-    public class PostVm : vStatementWithStats
+    public class PostVm : ft_StatementWithStats
     {
 
         public PostVm() { }

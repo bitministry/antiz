@@ -1,3 +1,4 @@
+using BitMinistry.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -13,6 +14,10 @@ namespace antiz.mvc
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            BSettings.Init();
+            Program.DomainName = BSettings.Get("domain", "antiZion.co");
+
         }
 
         public IConfiguration Configuration { get; }
@@ -36,8 +41,8 @@ namespace antiz.mvc
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            //if (false)
+            //if (env.IsDevelopment())
+            if (false)
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -67,7 +72,7 @@ namespace antiz.mvc
 
                 endpoints.MapControllerRoute(
                     name: "UserProfile",
-                    pattern: "/@{id}",
+                    pattern: "/@{id}/{xcase?}",
                     defaults: new { controller = "Home", action = "UserProfile" },
                     constraints: new { id = @"[\w]+" }  // Regex to allow alphanumeric 
                 );

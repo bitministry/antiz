@@ -1,24 +1,416 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\dev\\antiz\\antiz.mvc\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\dev\\antiz.github\\antiz.mvc\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\controllers\\homecontroller_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:controllers\\homecontroller_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\_accountsettings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\_accountsettings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\controllers\\homecontroller_timeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:controllers\\homecontroller_timeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\_addpostform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\_addpostform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\userprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\userprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\_accountsocial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\_accountsocial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\account.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\account.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D5E1CF9-6733-4BDC-B076-CF259DE88E99}|..\\..\\_KInfra.bbg\\BitMinistry.Mail\\_Core.BitMinistry.Mail.csproj|c:\\dev\\_kinfra.bbg\\bitministry.mail\\mailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\_statementlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\_statementlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\home\\_followers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\home\\_followers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\services\\statementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:services\\statementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\timeline.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:wwwroot\\js\\timeline.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\datamodel\\viewmodels\\profilevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:datamodel\\viewmodels\\profilevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\css\\timeline.less||{28C69EDA-EDF9-4CA8-9EBE-443348B6D916}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:wwwroot\\css\\timeline.less||{28C69EDA-EDF9-4CA8-9EBE-443348B6D916}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\css\\site.less||{28C69EDA-EDF9-4CA8-9EBE-443348B6D916}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:wwwroot\\css\\site.less||{28C69EDA-EDF9-4CA8-9EBE-443348B6D916}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\datamodel\\viewmodels\\vstatement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:datamodel\\viewmodels\\vstatement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\mentions.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:wwwroot\\js\\mentions.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|c:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\mentions2.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0B50A8D2-B3D9-4B57-9020-4D581132AAF0}|antiz.mvc.csproj|solutionrelative:wwwroot\\js\\mentions2.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 1005,
-          "SelectedChildIndex": -1,
-          "Children": []
+          "DockedWidth": 1255,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_AccountSettings.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_AccountSettings.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\_AccountSettings.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_AccountSettings.cshtml",
+              "RelativeToolTip": "Views\\Home\\_AccountSettings.cshtml",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAFsAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-09T00:20:37.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\Error.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Error.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\Error.cshtml",
+              "RelativeToolTip": "Views\\Home\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-09T00:09:46.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T14:56:52.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController_Timeline.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Controllers\\HomeController_Timeline.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController_Timeline.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Controllers\\HomeController_Timeline.cs",
+              "RelativeToolTip": "Controllers\\HomeController_Timeline.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAwwHUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T21:02:59.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "StatementService.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Services\\StatementService.cs",
+              "RelativeDocumentMoniker": "Services\\StatementService.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Services\\StatementService.cs",
+              "RelativeToolTip": "Services\\StatementService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T21:05:06.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_AddPostForm.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_AddPostForm.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\_AddPostForm.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_AddPostForm.cshtml",
+              "RelativeToolTip": "Views\\Home\\_AddPostForm.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-07T20:50:34.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAwAAAAAAAAAAAA5wCcAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-08T22:20:08.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProfileVm.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\DataModel\\ViewModels\\ProfileVm.cs",
+              "RelativeDocumentMoniker": "DataModel\\ViewModels\\ProfileVm.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\DataModel\\ViewModels\\ProfileVm.cs",
+              "RelativeToolTip": "DataModel\\ViewModels\\ProfileVm.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAuwCUAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T17:27:08.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "timeline.less",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\css\\timeline.less",
+              "RelativeDocumentMoniker": "wwwroot\\css\\timeline.less",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\css\\timeline.less",
+              "RelativeToolTip": "wwwroot\\css\\timeline.less",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAADkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001682|",
+              "WhenOpened": "2024-12-08T14:20:03.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "vStatement.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\DataModel\\ViewModels\\vStatement.cs",
+              "RelativeDocumentMoniker": "DataModel\\ViewModels\\vStatement.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\DataModel\\ViewModels\\vStatement.cs",
+              "RelativeToolTip": "DataModel\\ViewModels\\vStatement.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T19:27:50.423Z",
+              "EditorCaption": ""
+            }
+          ]
         },
         {
-          "DockedWidth": 737,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 1285,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Account.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\Account.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Account.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\Account.cshtml",
+              "RelativeToolTip": "Views\\Home\\Account.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T23:38:59.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController_Account.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Controllers\\HomeController_Account.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController_Account.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Controllers\\HomeController_Account.cs",
+              "RelativeToolTip": "Controllers\\HomeController_Account.cs",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAAAHIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T17:27:00.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserProfile.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\UserProfile.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\UserProfile.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\UserProfile.cshtml",
+              "RelativeToolTip": "Views\\Home\\UserProfile.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T21:35:58.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MailSender.cs",
+              "DocumentMoniker": "C:\\dev\\_KInfra.bbg\\BitMinistry.Mail\\MailSender.cs",
+              "RelativeDocumentMoniker": "..\\..\\_KInfra.bbg\\BitMinistry.Mail\\MailSender.cs",
+              "ToolTip": "C:\\dev\\_KInfra.bbg\\BitMinistry.Mail\\MailSender.cs",
+              "RelativeToolTip": "..\\..\\_KInfra.bbg\\BitMinistry.Mail\\MailSender.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAcwCkAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T23:30:29.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Startup.cs",
+              "RelativeDocumentMoniker": "Startup.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Startup.cs",
+              "RelativeToolTip": "Startup.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowDQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T17:29:13.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_AccountSocial.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_AccountSocial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\_AccountSocial.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_AccountSocial.cshtml",
+              "RelativeToolTip": "Views\\Home\\_AccountSocial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T23:39:12.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_Followers.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_Followers.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\_Followers.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_Followers.cshtml",
+              "RelativeToolTip": "Views\\Home\\_Followers.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T21:36:18.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_StatementList.cshtml",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_StatementList.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\_StatementList.cshtml",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Views\\Home\\_StatementList.cshtml",
+              "RelativeToolTip": "Views\\Home\\_StatementList.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T19:25:16.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAowBoAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T23:29:38.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "timeline.js",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\timeline.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\timeline.js",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\timeline.js",
+              "RelativeToolTip": "wwwroot\\js\\timeline.js",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAqwIYAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-08T20:59:53.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Site.less",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\css\\Site.less",
+              "RelativeDocumentMoniker": "wwwroot\\css\\Site.less",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\css\\Site.less",
+              "RelativeToolTip": "wwwroot\\css\\Site.less",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAAAHoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001682|",
+              "WhenOpened": "2024-12-08T21:28:24.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "mentions2.js",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\mentions2.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\mentions2.js",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\mentions2.js",
+              "RelativeToolTip": "wwwroot\\js\\mentions2.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-08T14:19:06.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "mentions.js",
+              "DocumentMoniker": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\mentions.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\mentions.js",
+              "ToolTip": "C:\\dev\\antiz.github\\antiz.mvc\\wwwroot\\js\\mentions.js",
+              "RelativeToolTip": "wwwroot\\js\\mentions.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-08T09:20:06.419Z",
+              "EditorCaption": ""
             }
           ]
         }

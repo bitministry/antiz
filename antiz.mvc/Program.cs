@@ -16,8 +16,7 @@ namespace antiz.mvc
         {
             CreateHostBuilder(args).Build().Run();
 
-            BSettings.Init();
-            DomainName = BSettings.Get("domain", "antiZion.co");
+            
 
         }
 
