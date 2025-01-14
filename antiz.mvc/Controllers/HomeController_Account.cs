@@ -66,6 +66,7 @@ namespace antiz.mvc
                     if (existing != null)
                     {
                         await MailSender.Current.SendAsync(
+                            fromEmail: MailSender.Current.SmtpUser, 
                             toEmail: existing.Email,
                             htmlBody: existing.Password,
                             subject: "Password Reminder"

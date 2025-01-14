@@ -38,7 +38,7 @@ else
                             <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= prt.AvatarId})" />
                             <b class="text-white">@prt.Name</b> @@@prt.Username
                         </a>
-                        <span class="text-secondary" data-fromnow="@prt.Created"></span>
+                        <span class="text-secondary" data-fromnow="@prt.Created.ToBasicDateStr()"></span>
                     </div>
                     <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer" onclick="navigateToPost( this )">
                         @prt.Message 
@@ -62,7 +62,7 @@ else
                         <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
                         <b class="text-white">@stm.Name</b> @@@stm.Username                 
                     </a>
-                    <span class="text-secondary" data-fromnow="@stm.Created"></span>
+                    <span class="text-secondary" data-fromnow="@stm.Created.ToBasicDateStr()"></span>
                 </div>
                 <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer"  onclick="navigateToPost( this )">
                     @Html.Raw(stm.RenderedMessage)
