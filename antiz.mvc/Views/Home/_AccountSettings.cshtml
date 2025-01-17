@@ -13,7 +13,7 @@
 
 
     <div class="card text-bg-dark mb-3">
-        <div class="card-header border-secondary">Account</div>
+        <div class="card-header mode-register border-secondary">Account</div>
         @if (Session.GetString("WeSentYouTheVerificationCode") == "True")
         {
             <div class="card-header border-danger">We sent you the verification code</div>
@@ -23,6 +23,15 @@
         }
         <div class="card-body">
 
+
+            <div class="row mode-login mb-3 pb-3 border-secondary border-bottom">
+                <div class="col-auto">
+                    <a href="/login" class="btn btn-outline-primary">
+                        <i class="bi bi-google"></i>
+                        Login with Google
+                    </a>
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Username</label>
@@ -131,9 +140,10 @@
                         Remind password
                     </button>
                 </div>
+                
+                
 
             </div>
-
 
 
 

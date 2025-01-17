@@ -1,4 +1,5 @@
 ﻿using BitMinistry;
+using BitMinistry.Data;
 using BitMinistry.Data.Wrapper;
 using BitMinistry.Utility;
 using Microsoft.AspNetCore.Diagnostics;
@@ -82,20 +83,31 @@ namespace antiz.mvc
 
         public PartialViewResult EditStatement(int? id, int? replyTo ) {
 
-            Statement model;
+            AddPostVm model;
 
             if (id.HasValue)
             {
-                model = id.Value.LoadEntity<Statement>();
+                model = id.Value.LoadEntity<Statement>().GetClone<AddPostVm>();
                 model.ThrowIfNull( "no statement at "+ id );
             }
             else
-                model = new Statement()
-                {
-                    ReplyTo = replyTo
-                };
-            
+                model = new AddPostVm();
+
+            model.ReplyTo = replyTo;
+
             return PartialView( "_AddPostForm", model );
+        }
+
+
+        public ActionResult DeleteStatement(int id)
+        {
+            var loginId = Session.GetInt32("LoginId");
+            if (loginId == null) return Content("null");
+
+            $"sp_statement_delete @login={loginId}, @id={id}".ExecuteSqlNonQuery();
+
+            return RedirectToAction("UserProfile");
+
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)

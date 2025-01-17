@@ -1,4 +1,5 @@
 using BitMinistry.Settings;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -24,6 +25,22 @@ namespace antiz.mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+                .AddCookie()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = BSettings.Get("Integration:Google:ClientId");
+                    options.ClientSecret = BSettings.Get("Integration:Google:ClientSecret");
+                    options.CallbackPath = "/signin-google"; 
+                    options.Scope.Add("email");
+                    options.Scope.Add("profile");
+                });
+
+
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
 
@@ -60,6 +77,7 @@ namespace antiz.mvc
 
             app.UseRouting();
 
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

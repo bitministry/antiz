@@ -25,23 +25,24 @@ else
         if (Model.ReplyParents != null && stm.ReplyTo.HasValue )
         {
             var prt = Model.ReplyParents[stm.ReplyTo.Value];
+            var prtLink = $"/@{prt.Username}";
 
             <div class="row p-1 p-sm-2 p-lg-3 reply-parent-in-list" data-statementid="@prt.StatementId">
                 <div class="col-auto d-none d-md-block reply-parent-avatar">
-                    <a href="@link">
+                    <a href="@prtLink">
                         <img class="avatar-thumb" src="@Url.Action("Photo", "BackEnd", new { id= prt.AvatarId})" />
                     </a>
                 </div>
                 <div class="col">
                     <div class="mb-1">
-                        <a href="@link">
+                        <a href="@prtLink">
                             <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= prt.AvatarId})" />
                             <b class="text-white">@prt.Name</b> @@@prt.Username
                         </a>
-                        <span class="text-secondary" data-fromnow="@prt.Created.ToBasicDateStr()"></span>
+                        <span class="text-secondary" data-fromnow="@prt.Created.ToBasicTimeStr()"></span>
                     </div>
                     <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer" onclick="navigateToPost( this )">
-                        @prt.Message 
+                        @Html.Raw(prt.RenderedMessage)
                     </div>
 
                 </div>
@@ -62,7 +63,7 @@ else
                         <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
                         <b class="text-white">@stm.Name</b> @@@stm.Username                 
                     </a>
-                    <span class="text-secondary" data-fromnow="@stm.Created.ToBasicDateStr()"></span>
+                    <span class="text-secondary" data-fromnow="@stm.Created.ToBasicTimeStr()"></span>
                 </div>
                 <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer"  onclick="navigateToPost( this )">
                     @Html.Raw(stm.RenderedMessage)

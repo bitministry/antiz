@@ -1,11 +1,13 @@
 ﻿using BitMinistry;
 using BitMinistry.Data.Wrapper;
 using BitMinistry.Mail;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -217,6 +219,70 @@ namespace antiz.mvc
             return RedirectToAction("Account");
         }
 
+        public IActionResult Login()
+        {
+            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "Google");
+        }
+
+
+        [Route("signin-google")]
+        public async Task<IActionResult> GoogleCallback()
+        {
+            var result = await HttpContext.AuthenticateAsync();
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("LoginFailed");
+            }
+
+            var email = result.Principal.FindFirst(ClaimTypes.Email)?.Value;
+            var name = result.Principal.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (email == null)
+                throw new Exception("Google login failed: Email is missing.");
+
+            var existingUser = email.LoadEntity<AppUser>(x => x.Email);
+
+            AppUser model;
+            if (existingUser == null)
+            {
+                var un = name ?? email.Split('@')[0];
+                if (un.LoadEntity<AppUser>() != null)
+                {
+                    un = email;
+                    if (un.LoadEntity<AppUser>() != null)
+                        un = Guid.NewGuid().ToString();
+                }
+
+                model = new AppUser
+                {
+                    Username = un,
+                    Email = email,
+                    Password = "google", 
+                    EmailVerificationCode = 0,
+                };
+
+                model.InsertSql(avoidDuplicate: true);
+            }
+            else
+            {
+                
+                model = existingUser;
+            }
+
+            // Populate session variables
+            HttpContext.Session.SetString("Username", model.Username);
+            HttpContext.Session.SetInt32("UserId", model.UserId.Value);
+
+            // Set cookies for persistent login
+            HttpContext.Response.Cookies.Append("Username", model.Username, new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(99),
+                HttpOnly = true
+            });
+
+            // Redirect to the account or home page
+            return RedirectToAction("Account");
+        }
 
         public IActionResult LogOff()
         {

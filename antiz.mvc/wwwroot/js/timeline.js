@@ -133,7 +133,12 @@
                             $(el).addClass("d-none");
                         else
                             timeline.replyParents.add(id);
+                    });
 
+                    $newItems.filter(".statement-in-list").each(function (ix, el) {
+                        var id = $(el).data("statementid");
+                        if (timeline.replyParents.has(id))
+                            $(el).addClass("d-none");
                     });
 
                     $('#timelineContainer').append($newItems);
@@ -155,9 +160,21 @@
     }, 
 
     editStatement: function ( statementId, what = "id") {
-        var url = addQueryToUrl(bitMin.viewData.editStatementUrl, what + "=" + statementId)
+        var url = addQueryToUrl(bitMin.viewData.editStatementUrl, what + "=" + statementId);
         $('#myModal .modal-dialog').addClass("modal-lg");
         openToModal( url );
+    },
+
+    deleteStatement: function (statementId ) {
+        var url = addQueryToUrl(bitMin.viewData.deleteStatementUrl, "id=" + statementId);
+        //$.get(url).done(function (data) {
+        //    if (data == "1") {
+        //        location.reload();
+        //    }
+        //}).fail(function (data) {
+        //    alertError(data.responseText);
+        //    console.log(data.responseText);
+        //}); 
     },
 
     postStatementUpdate: function (btn) {

@@ -70,7 +70,7 @@ namespace antiz.mvc
         static Regex _urlRex = new Regex(@"((http|https|ftp)://[^\s/$.?#].[^\s]*)|www\.[^\s/$.?#].[^\s]*");
         static HashSet<string> _videoProviders = new HashSet<string>(new[] { "youtube.com", "tiktok.com", "x.com", "twitter.com", "facebook.com", "instagram.com", "rumble.com", "vimeo.com" });
 
-        static Regex _mentionsRex = new Regex(@"@\w+");
+        static Regex _mentionsRex = new Regex(@"(?<!\b\w+\.\w{2,}/)@\w+");
 
         public Statement Post( Statement stm ) {
             stm.RenderedMessage = stm.Message.NewLineToBR();

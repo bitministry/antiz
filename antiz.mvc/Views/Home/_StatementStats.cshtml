@@ -26,11 +26,17 @@
     <div class="col-auto">
         @if (Model.AuthorId == Session.GetInt32("LoginId"))
         {
-            <span onclick="statFunc(this, @login, 'post-id', @Model.StatementId)" class="btn border-light btn-secondary btn-sm">
-                <i class="bi bi-pencil"></i>
-                Edit 
-            </span>
+            <div class="btn-group" role="group" >
 
+                <span onclick="statFunc(this, @login, 'post-id', @Model.StatementId)" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-pencil"></i>
+                    <span class="d-none d-sm-inline-block">Edit</span>
+                </span>
+                <a href="@Url.Action("DeleteStatement", new { @id = Model.StatementId })" class="btn btn-outline-danger btn-sm ">
+                    <i class="bi bi-x"></i>
+                    <span class="d-none d-sm-inline-block">Delete</span>
+                </a>
+            </div>
         }
         else
         {

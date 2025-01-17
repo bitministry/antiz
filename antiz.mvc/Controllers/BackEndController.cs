@@ -76,6 +76,9 @@ namespace antiz.mvc
             }
         }
 
+
+
+
         public static Statement stm;
 
         [HttpPost]
@@ -106,6 +109,7 @@ namespace antiz.mvc
                 return File(imageData.Data, "image/jpeg");
             }
         }
+
 
 
         public ActionResult Partial( string id ) => PartialView( $"~/Views/{id}.cshtml" );

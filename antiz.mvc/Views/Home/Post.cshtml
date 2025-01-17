@@ -30,15 +30,6 @@
         }
     </div>
 
-    <div class="col">
-        @if (Model.AuthorId == Session.GetInt32("LoginId"))
-        {
-            <button onclick="timeline.editStatement( @Model.StatementId )" type="button" class="btn btn-sm btn-outline-secondary float-end">
-                <i class="bi bi-pencil"></i>
-                Edit
-            </button>
-        }
-    </div>
 
 </div>
 <div class="row">

@@ -1,6 +1,7 @@
-﻿@{
+﻿@using BitMinistry.Settings
+@{
 
-    ViewBag.refreshStatic = DateTime.Now.Ticks;
+    ViewBag.refreshStatic = BSettings.GetInt("debug:scripts", 1 ) == 1 ? DateTime.Now.Ticks.ToString(): "";
 
 
     ViewData["javascript.postUrl"] = Url.Action("Post",new { id = (string)null });
@@ -11,6 +12,7 @@
     ViewData["javascript.fetchUsersUrl"] = Url.Action("GetUserSuggestions", "BackEnd");
 
     ViewData["javascript.editStatementUrl"] = Url.Action("EditStatement", new { id = (string)null, isModal = "true" });
+
 //    addStatementUrl
     
 }
@@ -35,6 +37,17 @@
 
     <meta property="og:image" content="https://antizion.co/image/logo_black.png" />
     <meta name="twitter:image" content="https://antizion.co/image/logo_black.png" />
+
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="~/favicon/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" href="~/favicon/apple-touch-icon.png">
+
+    <link rel="icon" type="image/x-icon" href="~/favicon/favicon.ico">
+
+    <link rel="manifest" href="~/favicon/site.webmanifest">
+
 
 
 </head>
@@ -76,9 +89,9 @@
                                 </li>
                             }
                             <li>
-                                <a href="http://israel.hetk.ee" class="nav-link px-0 px-md-2 py-2 fs-2">
-                                    <i class="bi bi-eye"></i>
-                                    <span class="d-none d-md-inline">Illuminati</span>
+                                <a href="http://history.antizion.co" class="nav-link px-0 px-md-2 py-2 fs-2">
+                                    <i class="bi bi-clock-history"></i>
+                                    <span class="d-none d-md-inline">History</span>
 
                                 </a>
                             </li>
@@ -99,7 +112,11 @@
                             </a>
                         }
 
+                        <div class="mt-5">
+                            <a class="text-secondary me-1" href="~/text/tos.html">terms</a>
+                            <a class="text-secondary" href="~/text/privacy.html">privacy</a>
 
+                        </div>
 
                     </div>
 
