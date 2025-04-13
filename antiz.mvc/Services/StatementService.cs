@@ -68,7 +68,7 @@ namespace antiz.mvc
         }
 
         static Regex _urlRex = new Regex(@"((http|https|ftp)://[^\s/$.?#].[^\s]*)|www\.[^\s/$.?#].[^\s]*");
-        static HashSet<string> _videoProviders = new HashSet<string>(new[] { "youtube.com", "tiktok.com", "x.com", "twitter.com", "facebook.com", "instagram.com", "rumble.com", "vimeo.com" });
+        static HashSet<string> _videoProviders = new HashSet<string>(new[] { "youtube.com", "tiktok.com", "x.com", "twitter.com", "rumble.com", "vimeo.com" }); //"facebook.com", "instagram.com", 
 
         static Regex _mentionsRex = new Regex(@"(?<!\b\w+\.\w{2,}/)@\w+");
 
@@ -136,24 +136,24 @@ namespace antiz.mvc
                 socialNet = SocialNet.TikTok;
 
             }
-            else if (host.Contains("facebook.com"))
-            {
-                framed =  $@"
-                <div class='fb-video' data-href='{videoUrl}' data-width='auto' data-show-text='false'></div>";
-                socialNet = SocialNet.Facebook;
-            }
-            else if (host.Contains("instagram.com"))
-            {
-                noFrame =  $@"
-                <blockquote class='instagram-media' 
-                            data-instgrm-permalink='{videoUrl}' 
-                            data-instgrm-version='14' 
-                            style='background:#FFF; border:0; border-radius:3px; 
-                                   box-shadow:0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15); 
-                                   margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;'>
-                </blockquote>";
-                socialNet = SocialNet.Instagram;
-            }
+            //else if (host.Contains("facebook.com"))
+            //{
+            //    framed =  $@"
+            //    <div class='fb-video' data-href='{videoUrl}' data-width='auto' data-show-text='false'></div>";
+            //    socialNet = SocialNet.Facebook;
+            //}
+            //else if (host.Contains("instagram.com"))
+            //{
+            //    noFrame =  $@"
+            //    <blockquote class='instagram-media' 
+            //                data-instgrm-permalink='{videoUrl}' 
+            //                data-instgrm-version='14' 
+            //                style='background:#FFF; border:0; border-radius:3px; 
+            //                       box-shadow:0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15); 
+            //                       margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;'>
+            //    </blockquote>";
+            //    socialNet = SocialNet.Instagram;
+            //}
             else if (host.Contains("rumble.com"))
             {
                 string videoId = videoUrl.Split('/').Last();

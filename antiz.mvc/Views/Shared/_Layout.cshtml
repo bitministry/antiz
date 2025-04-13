@@ -95,7 +95,21 @@
 
                                 </a>
                             </li>
-                            
+                            <li>
+                                <a href="http://gaza.hetk.ee" class="nav-link px-0 px-md-2 py-2 fs-2">
+                                    <i class="bi bi-exclamation-diamond"></i>
+                                    <span class="d-none d-md-inline">Gaza</span>
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.palestineremembered.com/FactsAboutHaavara.html" class="nav-link px-0 px-md-2 py-2 fs-2">
+                                    <i class="bi bi-exclamation-diamond"></i>
+                                    <span class="d-none d-md-inline">Haavara</span>
+
+                                </a>
+                            </li>
+
                         </ul>
                         @if (Session.GetString("Username") == null)
                         {
@@ -113,8 +127,28 @@
                         }
 
                         <div class="mt-5">
-                            <a class="text-secondary me-1" href="~/text/tos.html">terms</a>
-                            <a class="text-secondary" href="~/text/privacy.html">privacy</a>
+                            <div class="pb-2">
+                                <a class="text-secondary me-1" href="~/text/tos.html">
+                                    <i class="bi bi-paragraph"></i>
+                                    terms</a>
+                                <a class="text-secondary" href="~/text/privacy.html">
+                                    <i class="bi bi-shield-check"></i>
+                                    privacy</a> 
+                            </div>
+                            <div class="pb-2">
+                                <a class="text-secondary me-1" href="https://github.com/koolinoor/antiz/">
+                                    <i class="bi bi-github"></i>
+                                    git
+                                </a>
+                            </div>
+                            
+                            <div class="pb-2">
+                                <a class="text-secondary" href="mailto:support.at.antizion.co">
+                                    <i class="bi bi-envelope"></i>
+                                    support
+                                </a>
+                            </div>
+                            
 
                         </div>
 
@@ -153,19 +187,23 @@
     <script src="~/js/funny.js"></script>
 
     <script src="~/js/site.js?@ViewBag.refreshStatic"></script>
-    <script src="~/js/timeline.js?@ViewBag.refreshStatic"></script>
     <script src="~/js/userProfile.js?@ViewBag.refreshStatic"></script>
     <script src="~/js/mentions.js?@ViewBag.refreshStatic"></script>
 
-    <script async defer src='https://www.instagram.com/embed.js'></script>
-    <script async src='https://platform.twitter.com/widgets.js' charset='utf-8'></script>"
+@*     
+    <script id="igScrpt" async src='https://www.instagram.com/embed.js'></script>
 
-    <script async defer crossorigin='anonymous'
+    <script id="fbScrpt" async crossorigin='anonymous'
             src='https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0'>
     </script>
+ *@
 
+    <script id="twtrScrpt" async src='https://platform.twitter.com/widgets.js' charset='utf-8'></script>"
 
     <script async src='https://www.tiktok.com/embed.js'></script>
+
+    <script src="~/js/timeline.js?@ViewBag.refreshStatic"></script>
+
 
     @RenderSection("Scripts", required: false)
 
