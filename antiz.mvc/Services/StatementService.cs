@@ -4,6 +4,7 @@ using BitMinistry.Data.Wrapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
@@ -74,7 +75,21 @@ namespace antiz.mvc
 
         public Statement Post( Statement stm ) {
             stm.RenderedMessage = stm.Message.NewLineToBR();
-            var notYetEmbedded = true;
+            var hasEmbeddedContent = false;
+
+            if (stm.File?.Length > 0)
+            {
+                using var ms = new MemoryStream();
+                stm.File.CopyTo(ms);
+                var pht = new Photo()
+                {
+                    Data = ms.ToArray(),
+                };
+                pht.Thumb = pht.Data.ResizeAndCrop(500, 500);
+                pht.SaveOrUpdate();
+                stm.PhotoId = pht.PhotoId;
+                hasEmbeddedContent = true; 
+            }
 
             foreach (var m in _mentionsRex.Matches(stm.Message).Cast<Match>())
                 stm.RenderedMessage = stm.RenderedMessage.Replace(m.Value, $"<a href='/@{m.Value.Substring(1)}'>{m.Value}</a>");
@@ -90,11 +105,12 @@ namespace antiz.mvc
                 {
                     var host2ndLvl = $"{hostTmp[1]}.{hostTmp[0]}";
 
-                    if (notYetEmbedded && _videoProviders.Contains(host2ndLvl))
+                    if (! hasEmbeddedContent && _videoProviders.Contains(host2ndLvl))
                     {
                         var social = GenerateEmbedHtml(uri.AbsoluteUri);
                         replacement = social.Item1;
                         stm.SocialNet = social.Item2.Value;
+                        hasEmbeddedContent = true;
                     }
                     else
                         replacement = $"<a href='{uri.AbsoluteUri}' target=_blank>{uri.Host + uri.LocalPath}</a>";

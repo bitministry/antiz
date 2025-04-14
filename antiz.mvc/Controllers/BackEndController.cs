@@ -111,6 +111,16 @@ namespace antiz.mvc
         }
 
 
+        [ResponseCache(Duration = 2600000, VaryByQueryKeys = new[] { "id" }, Location = ResponseCacheLocation.Client)]
+        public ActionResult Thumb(int? id = 0)
+        {
+            using (var sql = new BSqlCommander())
+            {
+                var imageData = id.Value.LoadEntity<Photo>();
+
+                return File(imageData.Thumb, "image/jpeg");
+            }
+        }
 
         public ActionResult Partial( string id ) => PartialView( $"~/Views/{id}.cshtml" );
 

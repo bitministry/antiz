@@ -9,6 +9,7 @@ namespace antiz.mvc
         public int PhotoId { get; set; }
 
         public byte[] Data { get; set; }
+        public byte[] Thumb { get; set; }
     }
 
 }

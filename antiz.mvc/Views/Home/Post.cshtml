@@ -38,6 +38,12 @@
         onclick="@(Model.Child != null ? "navigateToPost(this)" : null )">
 
         @Html.Raw(Model.RenderedMessage)
+        @if (Model.PhotoId != null)
+        {
+            <a href="@Url.Action("Photo", "BackEnd", new {id = Model.PhotoId})">
+                <img src="@Url.Action("Thumb", "BackEnd", new {id = Model.PhotoId})" class="img-fluid" >
+            </a>
+        }
 
         @await Html.PartialAsync( "_StatementStats", Model )
     </div>    

@@ -1,4 +1,5 @@
 ﻿using BitMinistry;
+using Microsoft.AspNetCore.Http;
 using System;
 
 namespace antiz.mvc
@@ -17,6 +18,11 @@ namespace antiz.mvc
         public int LikeCount { get; set; }
         public int ReplyCount { get; set; }
         public int RepostCount { get; set; }
+
+        public int? PhotoId { get; set; }
+
+        [BSqlIgnore]
+        public IFormFile File { get; set; }
 
     }
 

@@ -1,11 +1,14 @@
 ﻿@model StatementListVm
-
+@using BitMinistry
 
 @if ( Model.LoadMoreFrom == null )
 {    
     @await Html.PartialAsync("_AddPostForm", Model.AddPostVm )
 
     <div id="timelineContainer"></div>
+
+    DateTime? ll = null;
+    var qqq = ll.ToBasicDateStr();
 
 
     <script>
@@ -21,11 +24,14 @@ else
     foreach (var stm in Model.Content)
     {
         var link = $"/@{stm.Username}";
+        
+        var dtStr = stm.Created.ToBasicDateStr();
 
         if (Model.ReplyParents != null && stm.ReplyTo.HasValue )
         {
             var prt = Model.ReplyParents[stm.ReplyTo.Value];
             var prtLink = $"/@{prt.Username}";
+            dtStr = prt.Created.ToBasicDateStr();
 
             <div class="row p-1 p-sm-2 p-lg-3 reply-parent-in-list" data-statementid="@prt.StatementId">
                 <div class="col-auto d-none d-md-block reply-parent-avatar">
@@ -39,10 +45,15 @@ else
                             <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= prt.AvatarId})" />
                             <b class="text-white">@prt.Name</b> @@@prt.Username
                         </a>
-                        <span class="text-secondary" data-fromnow="@prt.Created.ToBasicTimeStr()"></span>
+                        <span class="text-secondary" data-fromnow="@dtStr"></span>
                     </div>
                     <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer" onclick="navigateToPost( this )">
                         @Html.Raw(prt.RenderedMessage)
+                        @if (prt.PhotoId != null)
+                        {
+                            <br />
+                            <img src="@Url.Action("Thumb", "BackEnd", new {id = prt.PhotoId})" class="img-fluid">
+                        }
                     </div>
 
                 </div>
@@ -63,10 +74,15 @@ else
                         <img class="avatar-thumb d-inline-block d-md-none" src="@Url.Action("Photo", "BackEnd", new { id= stm.AvatarId})" />
                         <b class="text-white">@stm.Name</b> @@@stm.Username                 
                     </a>
-                    <span class="text-secondary" data-fromnow="@stm.Created.ToBasicTimeStr()"></span>
+                    <span class="text-secondary" data-fromnow="@dtStr"></span>
                 </div>
                 <div class="rendered-message fw-light p-1 p-sm-2 p-lg-3 cursor-pointer"  onclick="navigateToPost( this )">
                     @Html.Raw(stm.RenderedMessage)
+                    @if (stm.PhotoId != null)
+                    {
+                        <br />
+                        <img src="@Url.Action("Thumb", "BackEnd", new {id = stm.PhotoId})" class="img-fluid">
+                    }
                 </div>
 
             </div>

@@ -31,14 +31,15 @@ namespace antiz.mvc
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
                 .AddCookie()
-                .AddGoogle(options =>
-                {
-                    options.ClientId = BSettings.Get("Integration:Google:ClientId");
-                    options.ClientSecret = BSettings.Get("Integration:Google:ClientSecret");
-                    options.CallbackPath = "/signin-google"; 
-                    options.Scope.Add("email");
-                    options.Scope.Add("profile");
-                });
+                //.AddGoogle(options =>
+                //{
+                //    options.ClientId = BSettings.Get("Integration:Google:ClientId");
+                //    options.ClientSecret = BSettings.Get("Integration:Google:ClientSecret");
+                //    options.CallbackPath = "/signin-google"; 
+                //    options.Scope.Add("email");
+                //    options.Scope.Add("profile");
+                //})
+                ;
 
 
             services.AddControllersWithViews()
@@ -59,7 +60,7 @@ namespace antiz.mvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //if (env.IsDevelopment())
-            if (false)
+            if (true)
             {
                 app.UseDeveloperExceptionPage();
             }
